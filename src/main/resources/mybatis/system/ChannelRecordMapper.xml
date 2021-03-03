@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.system.channelRecord.mapper.ChannelRecordMapper">
+    
+    <resultMap type="ChannelRecord" id="ChannelRecordResult">
+        <result property="id"    column="id"    />
+        <result property="mobile"    column="mobile"    />
+        <result property="mobileMask"    column="mobile_mask"    />
+        <result property="channelAppid"    column="channel_appid"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="responseBody"    column="response_body"    />
+        <result property="callbackBody"    column="callback_body"    />
+        <result property="originIp"    column="origin_ip"    />
+        <result property="originUrl"    column="origin_url"    />
+    </resultMap>
+	
+	<sql id="selectChannelRecordVo">
+        select id, mobile, mobile_mask, channel_appid, create_time, response_body, callback_body, origin_ip, origin_url from channel_record
+    </sql>
+	
+    <select id="selectChannelRecordList" parameterType="ChannelRecord" resultMap="ChannelRecordResult">
+        <include refid="selectChannelRecordVo"/>
+        <where>  
+            <if test="id != null "> and id = #{id}</if>
+             <if test="mobile != null  and mobile != '' "> and mobile = #{mobile}</if>
+             <if test="mobileMask != null  and mobileMask != '' "> and mobile_mask = #{mobileMask}</if>
+             <if test="channelAppid != null  and channelAppid != '' "> and channel_appid = #{channelAppid}</if>
+             <if test="responseBody != null  and responseBody != '' "> and response_body like concat('%',#{responseBody},'%')</if>
+             <if test="originIp != null  and originIp != ''  "> and origin_ip = #{originIp}</if>
+             <if test="originUrl != null  and originUrl != '' "> and origin_url like concat('%',#{originUrl},'%')</if>
+			 <if test="params.beginTime != null and params.beginTime != ''"><!-- 开始时间检索 -->
+				AND date_format(create_time,'%y%m%d %H:%i:%S') &gt;= date_format(#{params.beginTime},'%y%m%d %H:%i:%S')
+			 </if>
+			 <if test="params.endTime != null and params.endTime != ''"><!-- 结束时间检索 -->
+				AND date_format(create_time,'%y%m%d %H:%i:%S') &lt;= date_format(#{params.endTime},'%y%m%d %H:%i:%S')
+			 </if>
+         </where>
+    </select>
+    
+    <select id="selectChannelRecord" parameterType="ChannelRecord" resultMap="ChannelRecordResult">
+        <include refid="selectChannelRecordVo"/>
+        where mobile = #{mobile} or mobile_mask = #{mobileMask}
+    </select>
+    
+    <select id="selectChannelRecordById" parameterType="Integer" resultMap="ChannelRecordResult">
+        <include refid="selectChannelRecordVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertChannelRecord" parameterType="ChannelRecord" useGeneratedKeys="true" keyProperty="id">
+        insert into channel_record
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="mobile != null  and mobile != ''  ">mobile,</if>
+			<if test="mobileMask != null  and mobileMask != ''  ">mobile_mask,</if>
+			<if test="channelAppid != null  and channelAppid != ''  ">channel_appid,</if>
+			<if test="createTime != null  ">create_time,</if>
+			<if test="responseBody != null  and responseBody != ''  ">response_body,</if>
+			<if test="originIp != null  and originIp != ''  ">origin_ip,</if>
+			<if test="originUrl != null  and originUrl != ''  ">origin_url,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="mobile != null  and mobile != ''  ">#{mobile},</if>
+			<if test="mobileMask != null  and mobileMask != ''  ">#{mobileMask},</if>
+			<if test="channelAppid != null  and channelAppid != ''  ">#{channelAppid},</if>
+			<if test="createTime != null  ">#{createTime},</if>
+			<if test="responseBody != null  and responseBody != ''  ">#{responseBody},</if>
+			<if test="originIp != null  and originIp != ''  ">#{originIp},</if>
+			<if test="originUrl != null  and originUrl != ''  ">#{originUrl},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateChannelRecord" parameterType="ChannelRecord">
+        update channel_record
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="mobile != null  and mobile != ''  ">mobile = #{mobile},</if>
+            <if test="mobileMask != null  and mobileMask != ''  ">mobile_mask = #{mobileMask},</if>
+            <if test="channelAppid != null  and channelAppid != ''  ">channel_appid = #{channelAppid},</if>
+            <if test="createTime != null  ">create_time = #{createTime},</if>
+            <if test="responseBody != null  and responseBody != ''  ">response_body = #{responseBody},</if>
+            <if test="callbackBody != null  and callbackBody != ''  ">callback_body = #{callbackBody},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+	<delete id="deleteChannelRecordById" parameterType="Integer">
+        delete from channel_record where id = #{id}
+    </delete>
+	
+    <delete id="deleteChannelRecordByIds" parameterType="String">
+        delete from channel_record where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>

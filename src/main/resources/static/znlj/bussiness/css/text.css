@@ -1,0 +1,70 @@
+body {
+  padding: 0.2rem 0.28rem 0;
+  background: #f7f7f7;
+}
+
+.title {
+  font-size: 0.16rem;
+  color: #333333;
+  padding-bottom: 0.1rem;
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 0.15rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+p {
+  padding-left: 0.06rem;
+  color: #969394;
+  font-size: 0.14rem;
+  line-height: 0.26rem;
+}
+
+h5 {
+  font-size: 0.14rem;
+  color: #333333;
+}
+
+p:last-of-type {
+  padding-bottom: 0.95rem;
+}
+
+.fixedBottom {
+  width: 100%;
+  height: 0.75rem;
+  background: #fff;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  padding: 0.18rem;
+}
+
+.fixedBottom a {
+  float: left;
+  width: 1.6rem;
+  text-align: center;
+  border: 1px solid #6c63ff;
+  color: #6c63ff;
+  line-height: 0.38rem;
+  height: 0.4rem;
+  border-radius: 0.2rem;
+  font-weight: 700;
+}
+
+.fixedBottom .agree {
+  background: #6c63ff;
+  color: #fff;
+  float: right;
+}
+
+.update {
+  width: 1.88rem;
+  margin: 0.9rem auto 0.12rem;
+  display: block;
+}
+
+.updateTip {
+  font-size: 0.14rem;
+  color: #999999;
+  text-align: center;
+}

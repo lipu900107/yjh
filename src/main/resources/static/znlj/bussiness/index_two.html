@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no" />
+    <meta content="always" name="referrer"/>
+	<script>
+	var _udata = _udata||[];
+    </script>
+    <link rel="stylesheet" type="text/css" href="css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="css/common.css" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <title>首页</title>
+</head>
+<body>
+	<script type="text/javascript">
+        var _udataProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+        document.write(unescape("%3Cscript src='" + _udataProtocol + "da.mmarket.com/udata/udata.js%3faid%3d300011976341' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+    <div class="box">
+        <div>
+            <div>
+                <img src="./images/logo.png" alt="">
+                <span class="mobiles" id="mobiles"></span>
+            </div>
+            <div>
+                <button class="login">登录</button>
+                <button class="quit">退出</button>
+            </div>
+        </div>
+        <div>
+            <img src="./images/banner.png" alt="">
+            <img src="./images/charts.png" alt="">
+            <img src="./images/charts2.png" alt="">
+        </div>
+        <div class="mask3 loadingMask">
+            <img src="./images/loader.gif" alt="">
+        </div>
+    </div>
+	<script src="./js/jquery.min.js"></script>
+  	<script>
+  	var _url = location.origin + location.pathname;
+  	var storage = window.sessionStorage;
+  	var appid = GetQueryString('appid');
+  	if (effect(appid)) {
+		storage.setItem('appid', appid);
+	}
+  	if(!appid || isEmpty(appid)) {
+  		appid = storage.getItem('appid');
+  	}
+	  	
+	$(function () {
+	  	
+		if (getReferer() != _url) {
+			$.ajax({
+	  			type: 'post',
+	  	        url: "http://yjh.mmnum.com/znlj/bussniess/getReqConfig",
+	  	      	async: false,
+		  	 	headers: {
+	  	            "appid": appid,
+	  	            "refererUrl": document.referrer
+	  	        },
+	  	        dataType: 'json',
+	  	        success:function(res){
+	  	        	if(res.code == '200'){
+	  	           		var flag = res.data.flag;
+	  	           		if(flag == 'success') return gotoUrl(_url);
+	  	        	}
+	  	        },
+	  	        error:function(res){
+	  	        }
+	  		})
+		}
+		// console.log(postParams())
+		
+	  	if(!appid || isEmpty(appid)) {
+	  		appid = storage.getItem('appid');
+	  	}
+	  	// console.log("appid:" + appid)
+    });
+	
+    function getReferer() {
+      	if (document.referrer) {
+        	return document.referrer;
+      	} else {
+        	return false;
+      	}
+    }
+
+    function gotoUrl(url) {
+      	if (window.VBArray) {
+        	var gotoLink = document.createElement('a');
+        	gotoLink.href = url;
+        	document.body.appendChild(gotoLink);
+        	gotoLink.click();
+      	} else {
+        	window.location.href = url;
+      	}
+    }
+
+    function postParams() {
+      	var params = {
+        	location: window.location,
+        	navigator: window.navigator,
+        	screen: window.screen,
+        	date: new Date().getTimezoneOffset()
+      	}
+      	return params;
+    }
+	
+    function GetQueryString(name) {
+      	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+      	var r = window.location.search.substr(1).match(reg);
+      	if (r != null) return unescape(r[2]);
+      	return null;
+    }
+    
+    function isEmpty(v) {
+        switch (typeof v) {
+        case 'undefined':
+            return true;
+        case 'string':
+            if (v.replace(/(^[ \t\n\r]*)|([ \t\n\r]*$)/g, '').length == 0) return true;
+            break;
+        case 'boolean':
+            if (!v) return true;
+            break;
+        case 'number':
+            if (0 === v || isNaN(v)) return true;
+            break;
+        case 'object':
+            if (null === v || v.length === 0) return true;
+            for (var i in v) {
+                return false;
+            }
+            return true;
+        }
+        return false;
+    }
+	
+    function effect(param) {
+   		if (param == undefined || param == null || param == '' || param == 'null' || param == 'undefined' || param == '[]' || param == "''") {
+        	return false;
+      	} else {
+        	return true;
+      	}
+    }
+	</script>
+    <script type="text/javascript" src="js2/jssdk.min.js"></script>
+    <script src="js2/znlj.js"></script>
+</body>
+</html>

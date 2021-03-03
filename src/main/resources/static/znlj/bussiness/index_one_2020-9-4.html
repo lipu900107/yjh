@@ -1,0 +1,73 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no" />
+    <meta content="always" name="referrer"/>
+	<script>
+	var _udata = _udata||[];
+    </script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/rem.js"></script>
+    
+    <link rel="stylesheet" type="text/css" href="css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="css/common.css" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <title>首页</title>
+</head>
+
+<body>
+	<script type="text/javascript">
+        var _udataProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+        document.write(unescape("%3Cscript src='" + _udataProtocol + "da.mmarket.com/udata/udata.js%3faid%3d000340' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+    <div class="box">
+        <div>
+            <div>
+                <img src="./images/logo.png" alt="">
+                <span class="mobiles" id="mobiles"></span>
+            </div>
+            <div>
+                <button class="login">登录</button>
+                <button class="quit">退出</button>
+            </div>
+        </div>
+        <div>
+            <img src="./images/banner.png" alt="">
+            <img src="./images/charts.png" alt="">
+            <img src="./images/charts2.png" alt="">
+        </div>
+        <div class="mask3 loadingMask">
+            <img src="./images/loader.gif" alt="">
+        </div>
+    </div>
+    <div class="serviceRuleBox">
+        <div class="rule">
+            <div class="nowLogin">
+                <button class="thisNumBtn">本机号码一键登录</button>
+                <div class="service clearfix">
+                    <div class="agree"></div>
+                    <a class="showService" href="./rule.html">已阅读并同意《<i>用户协议</i>》</a>
+                </div>
+                <button class="switch switch1">切换其他登录方式</button>
+            </div>
+            <div class="chooseLogin">
+                <div class="info">
+                    <input type="tel" pattern="[0-9]*" class="changeIpt1"
+                        oninput="if(value.length>11)value=value.slice(0,11);change()" placeholder="请输入手机号码" />
+                </div>
+                <div class="service clearfix  ">
+                    <div class="agree"></div>
+                    <a class="showService"  href="./rule.html">我已阅读并同意《<i>用户协议</i>》</a>
+                </div>
+                <button class="commonBtn agreeBtn disabled" disabled="disabled"> 快捷登录</button>
+                <button class="switch switch2">切换其他登录方式</button>
+            </div>
+            <img src="images/close.png" class="close">
+        </div>
+    </div>
+    <script type="text/javascript" src="js/jssdk.min.js"></script>
+    <script src="js/znlj.js"></script>
+</body>
+
+</html>

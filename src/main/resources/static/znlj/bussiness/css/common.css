@@ -1,0 +1,698 @@
+body {
+    background:rgba(40,31,207,1);
+}
+
+.bgF7 {
+    background: #f7f7f7;
+}
+
+.purple {
+    background: #6c63ff;
+}
+
+input {
+    width: 2.82rem;
+    padding: 0.1rem 0.14rem;
+    background: #fff;
+    border-radius: 0.05rem;
+    font-size: 0.15rem;
+}
+
+.bgF7 .info {
+    margin-top: 0.35rem;
+}
+
+.info {
+    text-align: center;
+    margin-top: 0.09rem;
+}
+
+.info input:first-child {
+    margin-bottom: 0.12rem;
+}
+
+.info label {
+    position: relative;
+}
+
+.info label .getMsgCode {
+    position: absolute;
+    right: 0;
+    top: -0.13rem;
+    font-size: 0.15rem;
+    color: #FF971C;
+    padding: 0.1rem;
+    width: 1.1rem;
+    background: none;
+    z-index: 3;
+}
+
+.banner,
+.code {
+    width: 100%;
+    display: block;
+}
+
+
+.submitBtn,
+.loginBtn,
+.agreeBtn {
+    background: #DCDCDC;
+    color: #fff;
+    font-size: 0.16rem;
+    font-weight: 700;
+    display: block;
+    width: 2.42rem;
+    height: 0.45rem;
+    border-radius: 0.2rem;
+    margin: 0.19rem auto 0.4rem;
+}
+
+.submitBtn {
+    background: url(../images/btn.png) no-repeat top center;
+    background-size: 100%;
+}
+
+.index .submitBtn {
+    margin-bottom: 0.3rem;
+}
+
+.loginBtn {
+    margin-top: 0.18rem;
+    text-align: center;
+    line-height: 0.38rem;
+}
+
+.salesman {
+    width: 2.4rem;
+    background: #F7F7F7;
+}
+
+.agreeBtn {
+    margin-bottom: 0.01rem;
+}
+
+.blueBtn {
+    background-image: url(../images/btnBlue.png);
+    background-size: 100%;
+    color: #fff;
+}
+
+.find,
+.service {
+    padding-top: 0.07rem;
+    font-size: 0.12rem;
+    color: #1979F4;
+    font-weight: 700;
+    /* margin-left: 0.63rem; */
+}
+
+.find {
+    text-align: center;
+    margin-right: 0;
+    display: block;
+    margin-bottom: 0.8rem;
+}
+
+/* .service {
+    text-align: left;
+    padding-left: 0.2rem;
+    background: url(../images/choose.png) no-repeat left center;
+    background-size: 0.15rem;
+    line-height: 0.15rem;
+    padding-top: 0;
+    margin-top: 0.04rem;
+    margin-left: 0.42rem;
+} */
+
+.scanBox {
+    margin: 0 auto 0.85rem;
+    width: 3.11rem;
+    overflow: hidden;
+}
+
+.scanBox .changeIpt1 {
+    width: 2.4rem;
+}
+
+.scanBox .getcode {
+    display: block;
+    background: #FF971C url(../images/scanQRCode.png) no-repeat 0.1rem center;
+    background-size: 0.12rem;
+    width: 0.6rem;
+    height: 0.36rem;
+    line-height: 0.36rem;
+    text-indent: 0.28rem;
+    color: #fff;
+    font-size: 0.12rem;
+    border-radius: 0.05rem;
+    margin-left: 0.1rem;
+}
+
+.scanBox input,
+.scanBox .getcode {
+    float: left;
+}
+
+.success {
+    display: block;
+    width: 1.2rem;
+    height: 1.2rem;
+    margin: 0.5rem auto 0.08rem;
+}
+
+.successBox {
+    text-align: center;
+}
+
+.successBox h6 {
+    font-size: 0.2rem;
+    color: #333333;
+}
+
+.successBox p {
+    font-size: 0.15rem;
+    line-height: 0.24rem;
+    color: #666666;
+}
+
+.successBox .code {
+    margin-top: 0.16rem;
+}
+
+.redLine,
+.purpleLine {
+    margin: 0 auto;
+    display: block;
+    width: 3.48rem;
+    left: 50%;
+    margin-left: -1.74rem;
+    position: absolute;
+}
+
+.bannerBox {
+    position: relative;
+}
+
+.bannerBox .redLine {
+    top: 1.34rem;
+}
+
+.bannerBox .purpleLine {
+    top: 2.47rem;
+}
+
+.serviceContent {
+    margin: 0 auto;
+    width: 3.3rem;
+    position: relative;
+    top: -0.96rem;
+}
+
+.serviceContent2 {
+    top: -1.24rem;
+}
+
+.serviceContent>p,
+.serviceContent2 div {
+    font-size: 0.14rem;
+    line-height: 0.26rem;
+    color: #333333;
+    padding: 0.2rem 0.14rem 0.22rem;
+    background: #fff;
+    border-radius: 0 0 0.05rem 0.05rem;
+    position: relative;
+    margin-bottom: 0.1rem;
+}
+
+.serviceContent>p:after,
+.serviceContent>p:before,
+.serviceContent2 .content:after,
+.serviceContent2 .content:before {
+    content: '';
+    position: absolute;
+    width: 0.06rem;
+    height: 0.39rem;
+    background: url(../images/linkPurple.png) no-repeat top left;
+    background-size: 100%;
+    bottom: -0.27rem;
+    z-index: 2;
+}
+
+.serviceContent>.lineOrange:after,
+.serviceContent>.lineOrange:before {
+    background-image: url(../images/link.png);
+}
+
+.serviceContent p:after,
+.serviceContent2 .content:after {
+    left: 0.23rem;
+}
+
+.serviceContent p:before,
+.serviceContent2 .content:before {
+    right: 0.23rem;
+}
+
+.serviceContent2 .content:first-child {
+    padding-top: 0.1rem;
+    background: #fff url(../images/purpleShadow.png) no-repeat top center;
+    background-size: 100% auto;
+}
+
+.serviceContent2 .content h6,
+.serviceContent2 .serviceInfo {
+    color: #6c63ff;
+    font-size: 0.15rem;
+    font-weight: 700;
+}
+
+.serviceContent2 .content h6:not(:first-child) {
+    padding-top: 0.1rem;
+    margin-top: 0.12rem;
+    border-top: 1px solid #d0e9ff;
+}
+
+.serviceContent2 .content p {
+    font-size: 0.14rem;
+    line-height: 0.24rem;
+}
+
+.serviceInfo .serviceContent2 .input {
+    display: block;
+    box-sizing: border-box;
+}
+
+.serviceContent2 .changeIpt1 {
+    margin-top: .1rem;
+}
+
+.serviceContent2 .btnLight {
+    background: #6C63FF;
+    color: #fff;
+}
+
+.serviceContent2 .radiusAll {
+    border-radius: 0.05rem;
+}
+
+.serviceInfo {
+    background: #fff;
+    border-radius: 0.05rem;
+    padding: 0.3rem 0.1rem 1px;
+}
+
+.serviceInfo input {
+    background: #F7F7F7;
+}
+
+.serviceInfo input:first-child {
+    margin-bottom: 0.12rem;
+}
+
+.mask,
+.mask2,
+.mask3,
+.mask4,
+.activityType {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .5);
+    z-index: 20;
+}
+
+.codeErr {
+    display: block;
+    color: #999999;
+    text-align: left;
+    font-size: 0.12rem;
+    padding-left: 0.08rem;
+    padding-bottom: 0.08rem;
+    border-bottom: 1px dashed #e5e5e5;
+}
+
+.mask {
+    z-index: 21;
+}
+
+.mask3,
+.mask4 {
+    display: none;
+}
+
+.mask3 img,
+.mask4 img {
+    display: block;
+    margin: 3rem auto 0;
+}
+
+.mask3 .codeContent>h6 {
+    color: #000000;
+    font-size: 0.18rem;
+    padding-top: 0.2rem;
+}
+
+.mask3 .codeContent>p {
+    font-size: 0.15rem;
+    color: #333333;
+    padding: 0.2rem 0.18rem;
+    text-align: left;
+}
+
+.mask3 .codeContent label,
+.codeLabel {
+    position: relative;
+}
+
+.mask3 .codeContent .code,
+.codeLabel .codeIpt {
+    width: 2.4rem;
+    background: #EEEEEE;
+    margin: 0 auto 0.05rem;
+    display: inline-block;
+}
+
+.mask3 .codeContent .code {
+    margin-bottom: 0.1rem;
+}
+
+.mask3 .status {
+    height: 0.39rem;
+    text-align: left;
+    padding: 0 0.2rem;
+    color: #999999;
+}
+
+.mask3 .error {
+    color: #FF6005;
+}
+
+.mask3 .codeContent .getMsgCode,
+.codeLabel .getMsgCode {
+    position: absolute;
+    right: 0;
+    top: -0.1rem;
+    text-align: right;
+    width: 1.1rem;
+    color: #6C63FF;
+    font-size: 0.12rem;
+    background: none;
+}
+
+.codeLabel .codeIpt {
+    margin-top: 0.1rem;
+    background: #f7f7f7;
+}
+
+.codeLabel .getMsgCode {
+    color:#F78E14;
+    top: -0.08rem;
+}
+
+.mask3 .btnBox {
+    border-top: 1px solid #D2D3D5;
+}
+
+.mask3 .btnBox button {
+    float: left;
+    width: 50%;
+    text-align: center;
+    line-height: 0.5rem;
+    color: #6C63FF;
+    font-size: 0.18rem;
+}
+
+.mask3 .btnBox button:first-child {
+    color: #000000;
+    width: 49%;
+    border-right: 1px solid #D2D3D5;
+}
+
+
+/*公用弹窗样式*/
+
+.tipsContent,
+.codeContent {
+    background: #FFFFFF;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    width: 2.8rem;
+    margin-left: -1.4rem;
+    text-align: center;
+    border-radius: 0.05rem;
+}
+
+.tipsContent h6 {
+    padding: 0.15rem 0;
+    color: #000000;
+    font-size: 0.18rem;
+}
+
+.tipsContent p {
+    padding: 0 0.14rem 0rem;
+    color: #999999;
+    font-size: 0.15rem;
+    line-height: 0.24rem;
+}
+.tipsContent p i{
+    color: #3992FF;
+}
+.tipsContent p b{
+    color:rgba(51,51,51,1);
+}
+.tipsContent p .text{
+   font-size:0.12rem ;
+}
+.tipsContent p .tal {
+    text-align: left;
+    display: block;
+}
+
+.tipsContent .black {
+    color: #333;
+    font-weight: 700;
+    font-size: 0.2rem;
+    display: inline-block;
+}
+
+.tipsContent button {
+    display: block;
+    width: 1.2rem;
+    height:0.4rem;
+    background:rgba(57,146,255,1);
+border-radius:0.2rem;
+font-size:0.15rem;
+font-family:Source Han Sans CN;
+font-weight:bold;
+color:rgba(255,255,255,1);
+margin: 0.1rem auto;
+}
+
+.tipsContent .dbBtnBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tipsContent .dbBtnBox button {
+    float: left;
+    /* width: 50%; */
+    border: 0 none;
+}
+
+.tipsContent .dbBtnBox .cancelBtn,
+.tipsContent .dbBtnBox .cancelBtn2 {
+    width: 1.2rem;
+    height:0.4rem;
+    background:#FFFFFF;
+font-size:0.15rem;
+font-weight:bold;
+color:#999999;
+}
+
+
+/*公用toast样式*/
+
+.toast {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    background: rgba(0, 0, 0, .7);
+    font: 0.12rem;
+    line-height: 2;
+    color: #FFFFFF;
+    padding: 0.14rem;
+    border-radius: 0.1rem;
+    text-align: center;
+}
+
+input {
+    -webkit-user-select: text !important;
+}
+
+.bottomNav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #FFFFFF;
+}
+
+.bottomNav:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    background: #DCDCDC;
+    width: 1px;
+    height: 100%;
+}
+
+.bottomNav button {
+    float: left;
+    width: 50%;
+    height: 0.6rem;
+    border-bottom: 0.03rem solid transparent;
+    font-weight: 700;
+    color: #333333;
+    font-size: 0.15rem;
+}
+
+.bottomNav button.active {
+    color: #6C63FF;
+    border-color: #6C63FF;
+}
+
+.listInfo {
+    padding: 0 0.2rem;
+}
+
+.listItem li,
+.listInfo li {
+    overflow: hidden;
+    width: 3.4rem;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0px 0px 0.1rem 0px rgba(1, 1, 1, 0.1);
+    padding: 0.14rem 0.12rem;
+    margin: 0 auto 0.1rem;
+}
+
+.listItem .left,
+.listInfo .left {
+    float: left;
+}
+
+.listItem .left p:nth-child(1),
+.listInfo .left p:nth-child(1) {
+    color: #282828;
+    font-size: 0.16rem;
+    padding-bottom: 0.12rem;
+}
+
+.listItem .left span,
+.listInfo .left span {
+    font-size: 0.12rem;
+    color: #FACD78;
+    background: rgba(250, 205, 120, 0.2);
+    padding: 0.03rem 0.1rem;
+    border-radius: 1rem;
+    text-align: center;
+}
+
+.listItem .left p:last-child,
+.listInfo .left p:last-child {
+    color: #959595;
+    font-size: 0.12rem;
+    padding-top: 0.14rem;
+}
+
+.listItem .right,
+.listInfo .right {
+    float: right;
+    text-align: right;
+}
+
+.listItem .right p:nth-child(1),
+.listInfo .right p:nth-child(1) {
+    font-size: 0.15rem;
+    color: #46AC85;
+    padding-bottom: 0.1rem;
+}
+
+.listItem .right p:nth-child(2),
+.listInfo .right p:nth-child(2) {
+    font-size: 0.12rem;
+    height: 0.14rem;
+    color: #959595;
+    margin-bottom: 0.2rem;
+}
+
+.listItem .right p:nth-child(2) {
+    background: url(../images/more.png) no-repeat center right;
+    background-size: 0.12rem;
+}
+
+.listItem .right p:last-child,
+.listInfo .right p:last-child {
+    font-size: 0.14rem;
+    color: #282828;
+}
+
+.listItem .right p.error,
+.listInfo .right p.error {
+    color: #F0746C;
+    font-size: 0.14rem;
+    font-weight: 600;
+}
+
+.listItem .right p.review,
+.listInfo .right p.review {
+    color: #5AB6FA;
+}
+
+.userBannerBox {
+    position: relative;
+    height: 4.98rem;
+}
+
+.userBannerBox .bannerInfo {
+    width: 3.2rem;
+    position: absolute;
+    bottom: 0.14rem;
+    left: 50%;
+    margin-left: -1.6rem;
+}
+
+.codeTip {
+    display: block;
+    font-size: .11rem;
+    color: #666666;
+    padding-left: 0.05rem;
+    text-align: left;
+}
+.codeTip >span:nth-of-type(1){
+    color: #FE6326;
+}
+.loadingMask {
+    z-index: 100;
+}
+.loading, .serviceRuleBox, .mask, .mask2, .mask3, .mask4 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .5);
+    /* z-index: 20; */
+}
+.add_position {
+    position: fixed;
+    width: 100%;
+}

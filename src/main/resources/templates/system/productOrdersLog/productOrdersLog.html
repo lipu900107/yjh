@@ -1,0 +1,132 @@
+<!DOCTYPE HTML>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+    
+     <div class="container-div">
+		<div class="row">
+			<div class="col-sm-12 search-collapse">
+				<form id="formId">
+					<div class="select-list">
+						<ul>
+							<li>
+								办理手机号：<input type="text" name="mobile"/>
+							</li>
+
+							<li>
+								请求接口：<input type="text" name="requestInterfaces"/>
+							</li>
+
+							<li>
+								请求参数：<input type="text" name="requestParam"/>
+							</li>
+
+							<li>
+								响应结果：<input type="text" name="responseResult"/>
+							</li>
+
+							<li>
+								开始时间：<input type="text" name="startTime"/>
+							</li>
+
+							<li>
+								结束时间：<input type="text" name="endTime"/>
+							</li>
+
+							<li>
+								产品省份：<input type="text" name="productProvice"/>
+							</li>
+
+							<li>
+								<a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+								<a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+							</li>
+						</ul>
+					</div>
+				</form>
+			</div>
+			
+	        <div class="btn-group-sm" id="toolbar" role="group">
+				<!-- <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="system:productOrdersLog:add">
+					<i class="fa fa-plus"></i> 添加
+				</a>
+				<a class="btn btn-primary btn-edit disabled" onclick="$.operate.edit()" shiro:hasPermission="system:productOrdersLog:edit">
+					<i class="fa fa-edit"></i> 修改
+				</a>
+				<a class="btn btn-danger btn-del btn-del disabled" onclick="$.operate.removeAll()" shiro:hasPermission="system:productOrdersLog:remove">
+					<i class="fa fa-remove"></i> 删除
+				</a>
+				<a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="system:productOrdersLog:export">
+						<i class="fa fa-download"></i> 导出
+				</a> -->
+			</div>
+			<div class="col-sm-12 select-table table-striped">
+				<table id="bootstrap-table" data-mobile-responsive="true"></table>
+			</div>
+		</div>
+	</div>
+    <div th:include="include :: footer"></div>
+    <script th:inline="javascript">
+        var editFlag = [[${@permission.hasPermi('system:productOrdersLog:edit')}]];
+        var removeFlag = [[${@permission.hasPermi('system:productOrdersLog:remove')}]];
+        var prefix = ctx + "system/productOrdersLog";
+
+        $(function() {
+            var options = {
+                url: prefix + "/list",
+                createUrl: prefix + "/add",
+                updateUrl: prefix + "/edit/{id}",
+                removeUrl: prefix + "/remove",
+				exportUrl: prefix + "/export",
+                modalName: "产品订单日志",
+		        showExport: true,
+                columns: [{
+		            checkbox: true
+		        },
+				{
+					field : 'uuid', 
+					title : '主键id',
+					visible: false
+				},
+				{
+					field : 'mobile', 
+					title : '办理手机号',
+					sortable: true
+				},
+				{
+					field : 'requestInterfaces', 
+					title : '请求接口',
+					sortable: true
+				},
+				{
+					field : 'requestParam', 
+					title : '请求参数',
+					sortable: true
+				},
+				{
+					field : 'responseResult', 
+					title : '响应结果',
+					sortable: true
+				},
+				{
+					field : 'startTime', 
+					title : '开始时间',
+					sortable: true
+				},
+				{
+					field : 'endTime', 
+					title : '结束时间',
+					sortable: true
+				},
+				{
+					field : 'productProvice', 
+					title : '产品省份',
+					sortable: true
+				}]
+            };
+            $.table.init(options);
+        });
+    </script>
+</body>
+</html>

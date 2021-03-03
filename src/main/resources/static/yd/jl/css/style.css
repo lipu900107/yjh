@@ -1,0 +1,153 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+
+html, body {
+	width: 100%;
+	box-sizing: border-box;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	overflow: scroll;
+}
+
+.mainBox {
+	position: relative;
+	width: 100%;
+	background: #ceeefe;
+}
+
+.cBox {
+	position: relative;
+	width: 100%;
+	text-align: center;
+}
+
+.title {
+	position: relative;
+	width: 100%;
+}
+
+.lImg {
+	position: absolute;
+	width: 30%;
+	top: 54.4%;
+	left: 17.4%;
+}
+
+.rImg {
+	position: absolute;
+	width: 30%;
+	top: 54.4%;
+	right: 17.4%;
+}
+
+.none {
+	display: none;
+}
+
+.bgBox {
+	position: relative;
+	width: 75%;
+	margin: 0 auto;
+	font-size: 0;
+}
+
+.iImg {
+	position: relative;
+	width: 100%;
+}
+
+input::-webkit-input-placeholder {
+	font-size: 14px;
+}
+
+.phoneNum {
+	position: absolute;
+	width: 62%;
+	left: 6%;
+	height: 20px;
+	line-height: 20px;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	text-align: left;
+	border: none;
+	background-color: transparent;
+	font-size: 14px;
+	vertical-align: middle;
+	-webkit-appearance: none;
+}
+
+.getCode {
+	position: absolute;
+	font-size: 14px;
+	width: 32%;
+	height: 100%;
+	color: #4298fb;
+	right: 2%;
+	top: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+@media (device-width: 320px) and (-webkit-min-device-pixel-ratio:2) {
+	.getCode {
+		width: 35%;
+	}
+}
+.qdBtn{
+	margin-top: 2%;
+	width: 90%;
+}
+.botWord{
+	margin-top: 10%;
+	margin-bottom: 10%;
+	width: 90%;
+}
+.mask{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	background: rgba(0,0,0,0.75);
+	z-index: 10;
+}
+.ywBox{
+	position: relative;
+	width: 69%;
+	top: 50%;
+	margin: auto 50%;
+	transform: translate(-50%,-50%);
+	text-align: center;
+}
+.ywBg{
+	position: relative;
+	width: 100%;
+}
+.close{
+	position: absolute;
+	width: 11.6%;
+	top: 0;
+	right: 0;
+}
+.close1{
+	position: relative;
+	width: 11.6%;
+	margin-top: 3%;
+}
+.sunBtn{
+	position: relative;
+	width: 48.1%;
+	margin-top: 3%;
+}
+.sWord{
+	position: absolute;
+	width: 68%;
+	left: 0;
+	color: #4298fb;
+	font-size: 16px;
+	top: 40%;
+	margin: auto 50%;
+	transform: translate(-50%,-60%);
+}

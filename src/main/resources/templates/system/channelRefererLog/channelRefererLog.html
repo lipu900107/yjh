@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+    
+     <div class="container-div">
+		<div class="row">
+			<div class="col-sm-12 search-collapse">
+				<form id="formId">
+					<div class="select-list">
+						<ul>
+							<li>
+								请求地址：<input type="text" name="refererUrl"/>
+							</li>
+							<li>
+								渠道编码：
+								<select name="channelAppid" th:with="type=${@dict.getType('channelApp')}">
+									<option value="">所有</option>
+									<option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
+								</select>
+							</li>
+
+							<li class="select-time">
+								<label>创建时间： </label>
+								<input type="text" class="datetime-input" style="width: 160px" id="startTime" placeholder="开始时间" name="params[beginTime]"/>
+								<span>-</span>
+								<input type="text" class="datetime-input" style="width: 160px" id="endTime" placeholder="结束时间" name="params[endTime]"/>
+							</li>
+
+							<li>
+								<a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+								<a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+							</li>
+						</ul>
+					</div>
+				</form>
+			</div>
+			
+	        <div class="btn-group-sm" id="toolbar" role="group">
+				<!-- <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="system:channelRefererLog:add">
+					<i class="fa fa-plus"></i> 添加
+				</a>
+				<a class="btn btn-primary btn-edit disabled" onclick="$.operate.edit()" shiro:hasPermission="system:channelRefererLog:edit">
+					<i class="fa fa-edit"></i> 修改
+				</a>
+				<a class="btn btn-danger btn-del btn-del disabled" onclick="$.operate.removeAll()" shiro:hasPermission="system:channelRefererLog:remove">
+					<i class="fa fa-remove"></i> 删除
+				</a> -->
+				<a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="system:channelRefererLog:export">
+						<i class="fa fa-download"></i> 导出
+				 </a>
+			</div>
+			<div class="col-sm-12 select-table table-striped">
+				<table id="bootstrap-table" data-mobile-responsive="true"></table>
+			</div>
+		</div>
+	</div>
+    <div th:include="include :: footer"></div>
+    <script th:inline="javascript">
+		var datas = [[${@dict.getType('channelApp')}]];
+        var prefix = ctx + "system/channelRefererLog";
+
+        $(function() {
+            var options = {
+                url: prefix + "/list",
+				exportUrl: prefix + "/export",
+		        sortName: "createTime",
+		        sortOrder: "desc",
+                modalName: "渠道请求日志",
+		        escape: true,
+		        showPageGo: true,
+		        columns: [
+				{
+					field : 'channelAppid', 
+					title : '渠道号',
+		            align: 'center',
+		            formatter: function(value, row, index) {
+		            	return $.table.selectDictLabel(datas, value);
+		            }
+				},
+				{
+					field : 'ipIsp', 
+					title : '运营商',
+					sortable: true
+				},
+				{
+					field : 'ipIspStr', 
+					title : '运营商详情',
+					sortable: true
+				},
+				{
+					field : 'createTime', 
+					title : '创建时间',
+					sortable: true
+				},
+				{
+					field : 'refererUrl', 
+					title : '请求地址',
+					sortable: true
+				}]
+            };
+            $.table.init(options);
+        });
+    </script>
+</body>
+</html>

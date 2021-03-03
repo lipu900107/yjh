@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+	<meta name="screen-orientation" content="portrait"/>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="full-screen" content="yes">
+	<meta name="x5-fullscreen" content="true">
+	<meta charset="UTF-8">
+	<title>中国移动流量包</title>
+	<link href="./css/style.css" rel="stylesheet">
+	<script type="text/javascript" src="//yun.tuisnake.com/h5-mami/log.js" id="send_log"></script>
+</head>
+<body>
+<div id="app" class="mainBox">
+	<div class="cBox">
+		<img class="title" src="./img/title_1.png">
+		<img id="lSelected" class="lImg" src="./img/30ed.png">
+		<img id="lSelect" class="lImg none" src="./img/30.png">
+		<img id="rSelect" class="rImg" src="./img/50.png">
+		<img id="rSelected" class="rImg none" src="./img/50ed.png">
+	</div>
+	<div class="cBox" style="margin-top: -10%;">
+		<div class="bgBox">
+			<img class="iImg" src="./img/boxBg.png">
+			<input class="phoneNum" v-model="Unum" pattern="[0-9]*" placeholder="请输入您的手机号码" oninput="if(value.length>11)value=value.slice(0,11)" type="number">
+			<p id="getCode"   v-show="!isshowStatus"  v-on:click="getVerifiyCode()" class="getCode">获取验证码</p>
+			<p id="reGetCode" v-show="isshowStatus" style="color: #888888;display: none;" class="getCode none">重新获取({{ wait }})</p>
+		</div>
+		<div class="bgBox" style="margin-top: 2%;">
+			<img class="iImg" src="./img/boxBg.png">
+			<input class="phoneNum" v-model="verifiyCode" pattern="[0-9]*" placeholder="请输入验证码" oninput="if(value.length>6)value=value.slice(0,6)" type="number">
+		</div>
+		<div class="bgBox" style="margin-top: 2%;">
+			<img class="qdBtn" src="./img/qdBtn.png" v-on:click="qdBtn()">
+		</div>
+		<div class="bgBox" style="width: 100%;">
+			<img id="botWord" class="botWord" src="./img/botWord1.png">
+			<img id="botWord_1" class="botWord none" src="./img/botWord1_1.png">
+		</div>
+	</div>
+	<div id="mask" class="mask" style="display: none;" v-show="isShowTip">
+		<div class="ywBox">
+			<img class="ywBg" src="./img/ywBg.png">
+			<img class="close" src="./img/close.png" v-on:click="closeTip()">
+			<p v-if="(selectType == 1) && !isShowRlt" class="sWord">您确认办理30元5G流量包业务吗？</p>
+			<p v-if="(selectType == 2) && !isShowRlt" class="sWord">您确认办理50元10G流量包业务吗？</p>
+			<p v-if="isShowRlt" class="sWord">{{ tipMsg }}</p>
+			<img class="sunBtn" src="./img/subBtn.png" v-on:click="sunMsg()">
+		</div>
+	</div>
+	<div id="mask_1" class="mask" style="display: none;" v-show="isShowTip1">
+		<div class="ywBox">
+			<img class="ywBg" src="./img/ywBg.png">
+			<p class="sWord">{{ tipMsg1 }}</p>
+			<img class="close1" src="./img/close.png" v-on:click="closeTip1()">
+		</div>
+	</div>
+</div>
+</body>
+<script src="./js/jquery-1.10.1.min.js"></script>
+<script src="./js/vue.js"></script>
+<script type="text/javascript" src="https://m.cudaojia.com/dist/effectListen/effectListen.js"></script>
+<script src="./js/cMian.js"></script>
+</html>

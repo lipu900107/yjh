@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>页面</title>
+</head>
+
+<body>
+  <p>移动测试页面</p>
+  <div class="frameBox"></div>
+</body>
+<script src="./js/jquery.min.js"></script>
+<script>
+  $(function () {
+    var appid = '1';
+    $('.frameBox').html('<iframe frameborder="0" src="http://yjh.mmnum.com/znlj/bussiness/index_two.html?appid=' + appid + '" style="display:none"></iframe>');
+  })
+</script>
+
+
+</html>

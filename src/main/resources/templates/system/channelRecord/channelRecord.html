@@ -1,0 +1,143 @@
+<!DOCTYPE HTML>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+    
+     <div class="container-div">
+		<div class="row">
+			<div class="col-sm-12 search-collapse">
+				
+				<form id="logininfor-form">
+					<div class="select-list">
+						<ul>
+							<li>
+								手机号：<input type="text" name="mobileMask"/>
+							</li>
+
+							<li>
+								渠道编码：
+								<select name="channelAppid" th:with="type=${@dict.getType('channelApp')}">
+									<option value="">所有</option>
+									<option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
+								</select>
+							</li>
+
+							<li>
+								渠道类型：
+								<select name="responseBody">
+									<option value="">所有</option>
+									<option value="自动导入">自动导入</option>
+									<option value="2">实时获取</option>
+								</select>
+							</li>
+
+							<li>
+								渠道地址：<input type="text" name="originUrl"/>
+							</li>
+
+							<li class="select-time">
+								<label>创建时间： </label>
+								<input type="text" class="datetime-input" style="width: 160px" id="startTime" placeholder="开始时间" name="params[beginTime]"/>
+								<span>-</span>
+								<input type="text" class="datetime-input" style="width: 160px" id="endTime" placeholder="结束时间" name="params[endTime]"/>
+							</li>
+
+							<li>
+								<a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+								<a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+							</li>
+						</ul>
+					</div>
+				</form>
+			</div>
+			
+	        <div class="btn-group-sm" id="toolbar" role="group">
+				<!-- <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="system:channelRecord:add">
+					<i class="fa fa-plus"></i> 添加
+				</a>
+				<a class="btn btn-primary btn-edit disabled" onclick="$.operate.edit()" shiro:hasPermission="system:channelRecord:edit">
+					<i class="fa fa-edit"></i> 修改
+				</a>
+				<a class="btn btn-danger btn-del btn-del disabled" onclick="$.operate.removeAll()" shiro:hasPermission="system:channelRecord:remove">
+					<i class="fa fa-remove"></i> 删除
+				</a> -->
+	            <a class="btn btn-info" onclick="$.table.importExcel()" shiro:hasPermission="system:channelRecord:import">
+		            <i class="fa fa-upload"></i> 导入
+		        </a>
+				<a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="system:channelRecord:export">
+					<i class="fa fa-download"></i> 导出
+				 </a>
+			</div>
+			<div class="col-sm-12 select-table table-striped">
+				<table id="bootstrap-table" data-mobile-responsive="true"></table>
+			</div>
+		</div>
+	</div>
+	<div th:include="include :: footer"></div>
+	<script th:inline="javascript">
+		var datas = [[${@dict.getType('channelApp')}]];
+	    var prefix = ctx + "system/channelRecord";
+	
+		$(function() {
+		    var options = {
+                url: prefix + "/list",
+				exportUrl: prefix + "/export",
+		        importUrl: prefix + "/importData",
+		        importTemplateUrl: prefix + "/importTemplate",
+		        sortName: "createTime",
+		        sortOrder: "desc",
+		        modalName: "渠道记录",
+		        escape: true,
+		        showPageGo: true,
+		        columns: [{
+					field : 'mobileMask', 
+					title : '手机号',
+					sortable: true
+				},
+				{
+					field : 'channelAppid', 
+					title : '渠道号',
+		            align: 'center',
+		            formatter: function(value, row, index) {
+		            	return $.table.selectDictLabel(datas, value);
+		            }
+				},
+				{
+					field : 'createTime', 
+					title : '创建时间',
+					sortable: true
+				},
+				{
+					field : 'responseBody', 
+					title : '渠道类型',
+					formatter: function(value, row, index) {
+		            	if(value != '自动导入') {
+		            		return "实时获取";
+		            	} else {
+		            		return value;
+		            	}
+		            }
+				},
+				{
+					field : 'originUrl', 
+					title : '渠道地址',
+					sortable: true
+				}]
+		    };
+		    $.table.init(options);
+		});
+	</script>
+</body>
+<form id="importForm" enctype="multipart/form-data" class="mt20 mb10" style="display: none;">
+	<div class="col-xs-offset-1">
+		<input type="file" id="file" name="file"/>
+		<div class="mt10 pt5">
+			 &nbsp;	<a onclick="$.table.importTemplate()" class="btn btn-default btn-xs"><i class="fa fa-file-excel-o"></i> 下载模板</a>
+		</div>
+		<font color="red" class="pull-left mt10">
+			提示：仅允许导入“xls”或“xlsx”格式文件！
+		</font>
+	</div>
+</form>
+</html>

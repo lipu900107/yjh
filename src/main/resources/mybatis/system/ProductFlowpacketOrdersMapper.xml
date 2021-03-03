@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.system.productFlowpacketOrders.mapper.ProductFlowpacketOrdersMapper">
+    
+    <resultMap type="ProductFlowpacketOrders" id="ProductFlowpacketOrdersResult">
+        <result property="uuid"    column="uuid"    />
+        <result property="ordersNo"    column="orders_no"    />
+        <result property="orderMobile"    column="order_mobile"    />
+        <result property="validateCode"    column="validate_code"    />
+        <result property="ordersStatus"    column="orders_status"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="productId"    column="product_id"    />
+        <result property="productName"    column="product_name"    />
+        <result property="productProvice"    column="product_provice"    />
+        <result property="extensionChannel"    column="extension_channel"    />
+        <result property="extensionChannelType"    column="extension_channel_type"    />
+        <result property="originUrl"    column="origin_url"    />
+        <result property="originIp"    column="origin_ip"    />
+        <result property="callbackInfo"    column="callback_info"    />
+    </resultMap>
+	
+	<sql id="selectProductFlowpacketOrdersVo">
+        select uuid, orders_no, order_mobile, validate_code, orders_status, create_time, product_id, product_name, product_provice, extension_channel, extension_channel_type, origin_url, origin_ip, callback_info from product_flowpacket_orders
+    </sql>
+	
+    <select id="selectProductFlowpacketOrdersList" parameterType="ProductFlowpacketOrders" resultMap="ProductFlowpacketOrdersResult">
+        <include refid="selectProductFlowpacketOrdersVo"/>
+        <where>  
+            <if test="uuid != null  and uuid != '' "> and uuid = #{uuid}</if>
+             <if test="ordersNo != null  and ordersNo != '' "> and orders_no = #{ordersNo}</if>
+             <if test="orderMobile != null  and orderMobile != '' "> and order_mobile = #{orderMobile}</if>
+             <if test="validateCode != null  and validateCode != '' "> and validate_code = #{validateCode}</if>
+             <if test="ordersStatus != null  and ordersStatus != '' "> and orders_status = #{ordersStatus}</if>
+             <if test="productId != null  and productId != '' "> and product_id = #{productId}</if>
+             <if test="productName != null  and productName != '' "> and product_name = #{productName}</if>
+             <if test="productProvice != null  and productProvice != '' "> and product_provice = #{productProvice}</if>
+             <if test="extensionChannel != null  and extensionChannel != '' "> and extension_channel = #{extensionChannel}</if>
+             <if test="extensionChannelType != null  and extensionChannelType != '' "> and extension_channel_type = #{extensionChannelType}</if>
+             <if test="originUrl != null  and originUrl != '' "> and origin_url = #{originUrl}</if>
+             <if test="originIp != null  and originIp != '' "> and origin_ip = #{originIp}</if>
+             <if test="callbackInfo != null  and callbackInfo != '' "> and callback_info = #{callbackInfo}</if>
+			 <if test="params.beginTime != null and params.beginTime != ''"><!-- 开始时间检索 -->
+				AND date_format(create_time,'%y%m%d %H:%i:%S') &gt;= date_format(#{params.beginTime},'%y%m%d %H:%i:%S')
+			 </if>
+			 <if test="params.endTime != null and params.endTime != ''"><!-- 结束时间检索 -->
+				AND date_format(create_time,'%y%m%d %H:%i:%S') &lt;= date_format(#{params.endTime},'%y%m%d %H:%i:%S')
+			 </if>
+         </where>
+    </select>
+    
+    <select id="selectProductFlowpacketOrdersById" parameterType="String" resultMap="ProductFlowpacketOrdersResult">
+        <include refid="selectProductFlowpacketOrdersVo"/>
+        where uuid = #{uuid}
+    </select>
+        
+    <insert id="insertProductFlowpacketOrders" parameterType="ProductFlowpacketOrders">
+        insert into product_flowpacket_orders
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="uuid != null  and uuid != ''  ">uuid,</if>
+			<if test="ordersNo != null  and ordersNo != ''  ">orders_no,</if>
+			<if test="orderMobile != null  and orderMobile != ''  ">order_mobile,</if>
+			<if test="validateCode != null  and validateCode != ''  ">validate_code,</if>
+			<if test="ordersStatus != null  and ordersStatus != ''  ">orders_status,</if>
+			<if test="createTime != null  ">create_time,</if>
+			<if test="productId != null  and productId != ''  ">product_id,</if>
+			<if test="productName != null  and productName != ''  ">product_name,</if>
+			<if test="productProvice != null  and productProvice != ''  ">product_provice,</if>
+			<if test="extensionChannel != null  and extensionChannel != ''  ">extension_channel,</if>
+			<if test="extensionChannelType != null  and extensionChannelType != ''  ">extension_channel_type,</if>
+			<if test="originUrl != null  and originUrl != ''  ">origin_url,</if>
+			<if test="originIp != null  and originIp != ''  ">origin_ip,</if>
+			<if test="callbackInfo != null  and callbackInfo != ''  ">callback_info,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="uuid != null  and uuid != ''  ">#{uuid},</if>
+			<if test="ordersNo != null  and ordersNo != ''  ">#{ordersNo},</if>
+			<if test="orderMobile != null  and orderMobile != ''  ">#{orderMobile},</if>
+			<if test="validateCode != null  and validateCode != ''  ">#{validateCode},</if>
+			<if test="ordersStatus != null  and ordersStatus != ''  ">#{ordersStatus},</if>
+			<if test="createTime != null  ">#{createTime},</if>
+			<if test="productId != null  and productId != ''  ">#{productId},</if>
+			<if test="productName != null  and productName != ''  ">#{productName},</if>
+			<if test="productProvice != null  and productProvice != ''  ">#{productProvice},</if>
+			<if test="extensionChannel != null  and extensionChannel != ''  ">#{extensionChannel},</if>
+			<if test="extensionChannelType != null  and extensionChannelType != ''  ">#{extensionChannelType},</if>
+			<if test="originUrl != null  and originUrl != ''  ">#{originUrl},</if>
+			<if test="originIp != null  and originIp != ''  ">#{originIp},</if>
+			<if test="callbackInfo != null  and callbackInfo != ''  ">#{callbackInfo},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateProductFlowpacketOrders" parameterType="ProductFlowpacketOrders">
+        update product_flowpacket_orders
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="ordersNo != null  and ordersNo != ''  ">orders_no = #{ordersNo},</if>
+            <if test="orderMobile != null  and orderMobile != ''  ">order_mobile = #{orderMobile},</if>
+            <if test="validateCode != null  and validateCode != ''  ">validate_code = #{validateCode},</if>
+            <if test="ordersStatus != null  and ordersStatus != ''  ">orders_status = #{ordersStatus},</if>
+            <if test="createTime != null  ">create_time = #{createTime},</if>
+            <if test="productId != null  and productId != ''  ">product_id = #{productId},</if>
+            <if test="productName != null  and productName != ''  ">product_name = #{productName},</if>
+            <if test="productProvice != null  and productProvice != ''  ">product_provice = #{productProvice},</if>
+            <if test="extensionChannel != null  and extensionChannel != ''  ">extension_channel = #{extensionChannel},</if>
+            <if test="extensionChannelType != null  and extensionChannelType != ''  ">extension_channel_type = #{extensionChannelType},</if>
+            <if test="originUrl != null  and originUrl != ''  ">origin_url = #{originUrl},</if>
+            <if test="originIp != null  and originIp != ''  ">origin_ip = #{originIp},</if>
+            <if test="callbackInfo != null  and callbackInfo != ''  ">callback_info = #{callbackInfo},</if>
+        </trim>
+        where uuid = #{uuid}
+    </update>
+
+	<delete id="deleteProductFlowpacketOrdersById" parameterType="String">
+        delete from product_flowpacket_orders where uuid = #{uuid}
+    </delete>
+	
+    <delete id="deleteProductFlowpacketOrdersByIds" parameterType="String">
+        delete from product_flowpacket_orders where uuid in 
+        <foreach item="uuid" collection="array" open="(" separator="," close=")">
+            #{uuid}
+        </foreach>
+    </delete>
+    
+</mapper>

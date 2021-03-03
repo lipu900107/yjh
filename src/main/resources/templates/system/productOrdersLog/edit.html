@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html  lang="zh" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-productOrdersLog-edit" th:object="${productOrdersLog}">
+            <input id="uuid" name="uuid" th:field="*{uuid}"  type="hidden">
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">办理手机号：</label>
+				<div class="col-sm-8">
+					<input id="mobile" name="mobile" th:field="*{mobile}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">请求接口：</label>
+				<div class="col-sm-8">
+					<input id="requestInterfaces" name="requestInterfaces" th:field="*{requestInterfaces}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">请求参数：</label>
+				<div class="col-sm-8">
+					<input id="requestParam" name="requestParam" th:field="*{requestParam}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">响应结果：</label>
+				<div class="col-sm-8">
+					<input id="responseResult" name="responseResult" th:field="*{responseResult}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">请求ip：</label>
+				<div class="col-sm-8">
+					<input id="originIp" name="originIp" th:field="*{originIp}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">来源：</label>
+				<div class="col-sm-8">
+					<input id="originUrl" name="originUrl" th:field="*{originUrl}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">开始时间：</label>
+				<div class="col-sm-8">
+					<input id="startTime" name="startTime" th:field="*{startTime}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">结束时间：</label>
+				<div class="col-sm-8">
+					<input id="endTime" name="endTime" th:field="*{endTime}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">产品省份：</label>
+				<div class="col-sm-8">
+					<input id="productProvice" name="productProvice" th:field="*{productProvice}" class="form-control" type="text">
+				</div>
+			</div>
+		</form>
+    </div>
+    <div th:include="include::footer"></div>
+    <script type="text/javascript">
+		var prefix = ctx + "system/productOrdersLog";
+		$("#form-productOrdersLog-edit").validate({
+			rules:{
+				xxxx:{
+					required:true,
+				},
+			},
+			focusCleanup: true
+		});
+		
+		function submitHandler() {
+	        if ($.validate.form()) {
+	            $.operate.save(prefix + "/edit", $('#form-productOrdersLog-edit').serialize());
+	        }
+	    }
+	</script>
+</body>
+</html>

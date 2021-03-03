@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.system.productOrdersLog.mapper.ProductOrdersLogMapper">
+    
+    <resultMap type="ProductOrdersLog" id="ProductOrdersLogResult">
+        <result property="uuid"    column="uuid"    />
+        <result property="mobile"    column="mobile"    />
+        <result property="requestInterfaces"    column="request_interfaces"    />
+        <result property="requestParam"    column="request_param"    />
+        <result property="responseResult"    column="response_result"    />
+        <result property="originIp"    column="origin_ip"    />
+        <result property="originUrl"    column="origin_url"    />
+        <result property="startTime"    column="start_time"    />
+        <result property="endTime"    column="end_time"    />
+        <result property="productProvice"    column="product_provice"    />
+    </resultMap>
+	
+	<sql id="selectProductOrdersLogVo">
+        select uuid, mobile, request_interfaces, request_param, response_result, origin_ip, origin_url, start_time, end_time, product_provice from product_orders_log
+    </sql>
+	
+    <select id="selectProductOrdersLogList" parameterType="ProductOrdersLog" resultMap="ProductOrdersLogResult">
+        <include refid="selectProductOrdersLogVo"/>
+        <where>  
+            <if test="uuid != null  and uuid != '' "> and uuid = #{uuid}</if>
+             <if test="mobile != null  and mobile != '' "> and mobile = #{mobile}</if>
+             <if test="requestInterfaces != null  and requestInterfaces != '' "> and request_interfaces = #{requestInterfaces}</if>
+             <if test="requestParam != null  and requestParam != '' "> and request_param = #{requestParam}</if>
+             <if test="responseResult != null  and responseResult != '' "> and response_result = #{responseResult}</if>
+             <if test="originIp != null  and originIp != '' "> and origin_ip = #{originIp}</if>
+             <if test="originUrl != null  and originUrl != '' "> and origin_url = #{originUrl}</if>
+             <if test="startTime != null "> and start_time = #{startTime}</if>
+             <if test="endTime != null "> and end_time = #{endTime}</if>
+             <if test="productProvice != null  and productProvice != '' "> and product_provice = #{productProvice}</if>
+         </where>
+         order by start_time desc
+    </select>
+    
+    <select id="selectProductOrdersLogById" parameterType="String" resultMap="ProductOrdersLogResult">
+        <include refid="selectProductOrdersLogVo"/>
+        where uuid = #{uuid}
+    </select>
+        
+    <insert id="insertProductOrdersLog" parameterType="ProductOrdersLog">
+        insert into product_orders_log
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="uuid != null  and uuid != ''  ">uuid,</if>
+			<if test="mobile != null  and mobile != ''  ">mobile,</if>
+			<if test="requestInterfaces != null  and requestInterfaces != ''  ">request_interfaces,</if>
+			<if test="requestParam != null  and requestParam != ''  ">request_param,</if>
+			<if test="responseResult != null  and responseResult != ''  ">response_result,</if>
+			<if test="originIp != null  and originIp != ''  ">origin_ip,</if>
+			<if test="originUrl != null  and originUrl != ''  ">origin_url,</if>
+			<if test="startTime != null  ">start_time,</if>
+			<if test="endTime != null  ">end_time,</if>
+			<if test="productProvice != null  and productProvice != ''  ">product_provice,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="uuid != null  and uuid != ''  ">#{uuid},</if>
+			<if test="mobile != null  and mobile != ''  ">#{mobile},</if>
+			<if test="requestInterfaces != null  and requestInterfaces != ''  ">#{requestInterfaces},</if>
+			<if test="requestParam != null  and requestParam != ''  ">#{requestParam},</if>
+			<if test="responseResult != null  and responseResult != ''  ">#{responseResult},</if>
+			<if test="originIp != null  and originIp != ''  ">#{originIp},</if>
+			<if test="originUrl != null  and originUrl != ''  ">#{originUrl},</if>
+			<if test="startTime != null  ">#{startTime},</if>
+			<if test="endTime != null  ">#{endTime},</if>
+			<if test="productProvice != null  and productProvice != ''  ">#{productProvice},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateProductOrdersLog" parameterType="ProductOrdersLog">
+        update product_orders_log
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="mobile != null  and mobile != ''  ">mobile = #{mobile},</if>
+            <if test="requestInterfaces != null  and requestInterfaces != ''  ">request_interfaces = #{requestInterfaces},</if>
+            <if test="requestParam != null  and requestParam != ''  ">request_param = #{requestParam},</if>
+            <if test="responseResult != null  and responseResult != ''  ">response_result = #{responseResult},</if>
+            <if test="originIp != null  and originIp != ''  ">origin_ip = #{originIp},</if>
+            <if test="originUrl != null  and originUrl != ''  ">origin_url = #{originUrl},</if>
+            <if test="startTime != null  ">start_time = #{startTime},</if>
+            <if test="endTime != null  ">end_time = #{endTime},</if>
+            <if test="productProvice != null  and productProvice != ''  ">product_provice = #{productProvice},</if>
+        </trim>
+        where uuid = #{uuid}
+    </update>
+
+	<delete id="deleteProductOrdersLogById" parameterType="String">
+        delete from product_orders_log where uuid = #{uuid}
+    </delete>
+	
+    <delete id="deleteProductOrdersLogByIds" parameterType="String">
+        delete from product_orders_log where uuid in 
+        <foreach item="uuid" collection="array" open="(" separator="," close=")">
+            #{uuid}
+        </foreach>
+    </delete>
+    
+</mapper>

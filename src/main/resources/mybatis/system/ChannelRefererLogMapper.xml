@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.system.channelRefererLog.mapper.ChannelRefererLogMapper">
+    
+    <resultMap type="ChannelRefererLog" id="ChannelRefererLogResult">
+        <result property="id"    column="id"    />
+        <result property="channelAppid"    column="channel_appid"    />
+        <result property="originIp"    column="origin_ip"    />
+        <result property="ipIsp"    column="ip_isp"    />
+        <result property="ipIspStr"    column="ip_isp_str"    />
+        <result property="refererUrl"    column="referer_url"    />
+        <result property="createTime"    column="create_time"    />
+    </resultMap>
+	
+	<sql id="selectChannelRefererLogVo">
+        select id, channel_appid, origin_ip, ip_isp, ip_isp_str, referer_url, create_time from channel_referer_log
+    </sql>
+	
+    <select id="selectChannelRefererLogList" parameterType="ChannelRefererLog" resultMap="ChannelRefererLogResult">
+        <include refid="selectChannelRefererLogVo"/>
+        <where>  
+            <if test="id != null "> and id = #{id}</if>
+             <if test="channelAppid != null  and channelAppid != '' "> and channel_appid = #{channelAppid}</if>
+             <if test="originIp != null  and originIp != '' "> and origin_ip like concat('%',#{originIp},'%')</if>
+             <if test="ipIsp != null  and ipIsp != '' "> and ip_isp = #{ipIsp}</if>
+             <if test="ipIspStr != null  and ipIspStr != '' "> and ip_isp_str = #{ipIspStr}</if>
+             <if test="refererUrl != null  and refererUrl != '' "> and referer_url like concat('%',#{refererUrl},'%')</if>
+			 <if test="params.beginTime != null and params.beginTime != ''"><!-- 开始时间检索 -->
+				AND date_format(create_time,'%y%m%d %H:%i:%S') &gt;= date_format(#{params.beginTime},'%y%m%d %H:%i:%S')
+			 </if>
+			 <if test="params.endTime != null and params.endTime != ''"><!-- 结束时间检索 -->
+				AND date_format(create_time,'%y%m%d %H:%i:%S') &lt;= date_format(#{params.endTime},'%y%m%d %H:%i:%S')
+			 </if>
+         </where>
+    </select>
+    
+    <select id="selectChannelRefererLogById" parameterType="Integer" resultMap="ChannelRefererLogResult">
+        <include refid="selectChannelRefererLogVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertChannelRefererLog" parameterType="ChannelRefererLog" useGeneratedKeys="true" keyProperty="id">
+        insert into channel_referer_log
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="channelAppid != null  and channelAppid != ''  ">channel_appid,</if>
+			<if test="originIp != null  and originIp != ''  ">origin_ip,</if>
+			<if test="ipIsp != null  and ipIsp != ''  ">ip_isp,</if>
+			<if test="ipIspStr != null  and ipIspStr != ''  ">ip_isp_str,</if>
+			<if test="refererUrl != null  and refererUrl != ''  ">referer_url,</if>
+			<if test="createTime != null  ">create_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="channelAppid != null  and channelAppid != ''  ">#{channelAppid},</if>
+			<if test="originIp != null  and originIp != ''  ">#{originIp},</if>
+			<if test="ipIsp != null  and ipIsp != ''  ">#{ipIsp},</if>
+			<if test="ipIspStr != null  and ipIspStr != ''  ">#{ipIspStr},</if>
+			<if test="refererUrl != null  and refererUrl != ''  ">#{refererUrl},</if>
+			<if test="createTime != null  ">#{createTime},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateChannelRefererLog" parameterType="ChannelRefererLog">
+        update channel_referer_log
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="channelAppid != null  and channelAppid != ''  ">channel_appid = #{channelAppid},</if>
+            <if test="originIp != null  and originIp != ''  ">origin_ip = #{originIp},</if>
+            <if test="ipIsp != null  and ipIsp != ''  ">ip_isp = #{ipIsp},</if>
+            <if test="ipIspStr != null  and ipIspStr != ''  ">ip_isp_str = #{ipIspStr},</if>
+            <if test="refererUrl != null  and refererUrl != ''  ">referer_url = #{refererUrl},</if>
+            <if test="createTime != null  ">create_time = #{createTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+	<delete id="deleteChannelRefererLogById" parameterType="Integer">
+        delete from channel_referer_log where id = #{id}
+    </delete>
+	
+    <delete id="deleteChannelRefererLogByIds" parameterType="String">
+        delete from channel_referer_log where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>
